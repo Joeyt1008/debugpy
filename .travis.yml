@@ -3,9 +3,10 @@ dist: xenial
 sudo: required
 cache: pip
 python:
-  - "2.7"
   - "3.8"
-
+arch:
+  - amd64
+  - arm64
 addons:
   apt:
     packages:
