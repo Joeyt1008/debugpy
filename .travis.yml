@@ -1,5 +1,5 @@
 language: python
-dist: xenial
+dist: focal
 sudo: required
 cache: pip
 python:
@@ -28,6 +28,8 @@ jobs:
 before_install:
   - sudo apt-get update
   - sudo apt-get --yes install gdb
+  - sysctl -a
+  - sysctl kernel.version
   - sudo sysctl kernel.yama.ptrace_scope=0
 
 install:
