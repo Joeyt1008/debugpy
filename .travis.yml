@@ -28,8 +28,8 @@ jobs:
 before_install:
   - sudo apt-get update
   - sudo apt-get --yes install gdb
-  - sysctl -a
-  - sysctl kernel.version
+  - sudo sysctl -a
+  - sudo sysctl kernel.version
   - sudo sysctl kernel.yama.ptrace_scope=0
 
 install:
