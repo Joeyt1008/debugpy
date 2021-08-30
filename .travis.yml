@@ -26,6 +26,8 @@ jobs:
         - flake8
 
 before_install:
+  - sudo apt-get update
+  - sudo apt-get --yes install gdb
   - sudo sysctl kernel.yama.ptrace_scope=0
 
 install:
