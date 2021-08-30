@@ -18,12 +18,13 @@ stages:
 
 jobs:
   include:
-    - stage: lint
+    - stage: test
       python: "3.8"
-      install:
-        - pip install -U pip setuptools flake8
-      script:
-        - flake8
+      arch: amd64
+    - stage: test
+      python: "3.8"
+      arch: arm64
+
 
 before_install:
   - sudo apt-get update
