@@ -27,13 +27,13 @@ jobs:
 
       - name: Install Dependencies
         run: |
-          apt-get -y install gdb
-          sysctl kernel.yama.ptrace_scope=0
-          pip install -U pip setuptools tox tox-travis
+          sudo apt-get -y install gdb
+          sudo sysctl kernel.yama.ptrace_scope=0
+          sudo pip install -U pip setuptools tox tox-travis
 
       - name: Test 
         run: |
-          tox -- -n4 -v
+          sudo tox -- -n4 -v
 
   armv64_job:
       name: Build and Test for arm64
