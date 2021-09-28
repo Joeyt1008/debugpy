@@ -13,35 +13,28 @@ addons:
       - gdb
 
 stages:
-  - lint
   - test
 
 jobs:
   include:
-    - stage: lint
+    - stage: test
       python: "3.8"
+      env:
+        - TOX_SKIP_ENV=.*-cov
       install:
-        - pip install -U pip setuptools flake8
+        - sudo sysctl kernel.yama.ptrace_scope=0
+        - pip install -U pip setuptools tox tox-travis
       script:
-        - flake8
+        - tox -- -n4 -v
         
      
-    - stage: lint
+    - stage: test
       python: "3.8"
+      env:
+        - TOX_SKIP_ENV=.*-cov
       arch: arm64
       install:
-        - pip install -U pip setuptools flake8
+        - sudo sysctl kernel.yama.ptrace_scope=0
+        - pip install -U pip setuptools tox tox-travis
       script:
-        - flake8
-
-before_install:
-  - sudo sysctl kernel.yama.ptrace_scope=0
-
-install:
-  - pip install -U pip setuptools tox tox-travis
-
-script:
-  - tox -- -n4 -v
-
-env:
-  - TOX_SKIP_ENV=.*-cov
+        - tox -- -n4 -v
